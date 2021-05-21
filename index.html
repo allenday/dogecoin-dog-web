@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>DogeTage</title>
+		<title>DogeTag</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -45,15 +45,15 @@
                                 <form method="post" action="#">
                                     <div class="row gtr-uniform">
                                         <div class="col-6 col-12-xsmall">
-                                            <input type="text" name="twitter" id="twitter" value="" placeholder="Twitter username" required/>
+                                            <input type="text" name="twitter" id="twitter" value="" placeholder="What's your Twitter @username?" required/>
                                         </div>
                                         <div class="col-6 col-12-xsmall">
-                                            <input type="text" name="dogname" id="dogname" value="" placeholder="Dog name" required />
+                                            <input type="text" name="dogname" id="dogname" value="" placeholder="What's your dog's name?" required />
                                         </div>
                                         
                                         <div class="col-12">
                                             <ul class="actions">
-                                                <li><input type="submit" value="Submit" class="primary" /></li>
+                                                <li><input type="submit" value="Submit" class="primary" style="background-color:#00DD00"/></li>
                                                 <li><input type="reset" value="Reset" /></li>
                                             </ul>
                                         </div>
@@ -209,9 +209,9 @@
                                             
                             new QRCode(document.getElementById("qrcode-pk"), optionsPublic);
                             new QRCode(document.getElementById("qrcode-sk"), optionsSecret);
-                            $('#pkid').text('Public key: ' + user.publicKey);
-                            $('#skid').text('Secret key: ' + user.secretKey);
-                            var tweetMessage = user.username +' joined #proofOfDog #KYD. Sign Message: '+ user.message;
+                            $('#pkid').text('Public key (your doge's wallet address): ' + user.publicKey);
+                            $('#skid').text('Private key (keep this safe and do not share with anyone): ' + user.secretKey);
+                            var tweetMessage = '#proofOfdog for ' + user.dogname + '\nsignature:\n'+ user.message + '\n#KYD';
                             $('#tweet').text(tweetMessage);
                             var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('@' + tweetMessage);
                             $('#twitter-hashtag-button').attr("href", tweetUrl);
