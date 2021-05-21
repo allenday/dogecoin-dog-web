@@ -209,9 +209,9 @@
                                             
                             new QRCode(document.getElementById("qrcode-pk"), optionsPublic);
                             new QRCode(document.getElementById("qrcode-sk"), optionsSecret);
-                            $('#pkid').text('Public key (your doge's wallet address): ' + user.publicKey);
+                            $('#pkid').text('Public key (' + user.dogname + '\'s wallet address): ' + user.publicKey);
                             $('#skid').text('Private key (keep this safe and do not share with anyone): ' + user.secretKey);
-                            var tweetMessage = '#proofOfdog for ' + user.dogname + '\nsignature:\n'+ user.message + '\n#KYD';
+                            var tweetMessage = user.dogname + '\'s #proofOfdog\n\nsignature:\n'+ user.message + '\n#KYD';
                             $('#tweet').text(tweetMessage);
                             var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('@' + tweetMessage);
                             $('#twitter-hashtag-button').attr("href", tweetUrl);
