@@ -279,7 +279,7 @@ Spread the doge love. Let's realize the dream of financial inclusion for all dog
                             new QRCode(document.getElementById("qrcode-sk"), optionsSecret);
                             $('#pkid').text('Public key: ' + user.publicKey);
                             $('#skid').text('Secret key: ' + user.secretKey);
-                            var tweetMessage = user.dogname +' joined #proofOfDog #KYD. Sign Message: '+ user.message;
+                            var tweetMessage = user.dogname + "'s #proofOfDog\n\n'+ user.message + '\n\n#KYD';
                             $('#tweet').text(tweetMessage);
                             var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetMessage);
                             $('#twitter-hashtag-button').attr("href", tweetUrl);
