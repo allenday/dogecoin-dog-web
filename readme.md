@@ -1,3 +1,6 @@
+npm install
+node app.js
+
 **⚠️⚠️⚠️ Please note! The domain name _dogecoinpaperwallet.net_ was previously associated with this project, but I have let it expire. If someone new re-registers that domain, it is in _no way_ affiliated with me. Proceed with caution. ⚠️⚠️⚠️**
 
 ## New domain! [dogecoinpaperwallet.org](https://dogecoinpaperwallet.org)
