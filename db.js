@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dogecoin = require('./dogecoin');
 
 const connectionString = 'mongodb+srv://dogeTag:SvhZeqx4sprynmAv@shop.auuyn.gcp.mongodb.net/dogeTagDB?retryWrites=true&w=majority';
-mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 const Schema = mongoose.Schema;
 
@@ -43,7 +43,7 @@ const createUser = (userInfo, cb) => {
         active: false
     };
     
-    userModel.create(newUser, (err, user) => {
+    userModel.findOneAndUpdate({username: newUser.username}, newUser, {new: true}, (err, user) => {
         if (err) {
             cb(err);
         } else {            
