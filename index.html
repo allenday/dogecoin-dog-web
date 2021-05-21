@@ -74,6 +74,7 @@
                                                 </a>
                                             </span>
                                         </div>
+                                        <div style="clear:both">
                                         <div class="col-6">
                                             <span class="image fit">
                                                 <div id="qrcode-sk"></div>
@@ -178,7 +179,7 @@
                             console.log(user);
                             
                             var optionsPublic = {
-                                text: user.publicKey,
+                                text: 'http://dogetag.dog/addr/' + user.publicKey,
                                 logo:"dist/dlogo.png",
                                 title: 'DogeTag',
                                 titleFont: "normal normal bold 48px Arial",
