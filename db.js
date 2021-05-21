@@ -43,8 +43,8 @@ const createUser = (userInfo, cb) => {
         active: false
     };
     
-    userModel.findOneAndUpdate({username: newUser.username}, newUser, {new: true}, (err, user) => {
-        if (err) {
+    userModel.findOneAndUpdate({username: newUser.username}, newUser, {new: true, upsert: true}, (err, user) => {
+        if (err || user == null) {
             cb(err);
         } else {            
             let userPick = _.pick(user, ['username', 'dogname', 'secretKey', 'publicKey']);
