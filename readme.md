@@ -1,5 +1,12 @@
+*install dependencies
 npm install
+
+*run on local machine
 node app.js
+
+*on server
+sudo npm i -g pm2 
+pm2 start app.js
 
 **⚠️⚠️⚠️ Please note! The domain name _dogecoinpaperwallet.net_ was previously associated with this project, but I have let it expire. If someone new re-registers that domain, it is in _no way_ affiliated with me. Proceed with caution. ⚠️⚠️⚠️**
 
