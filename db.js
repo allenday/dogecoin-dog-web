@@ -1,4 +1,3 @@
-//mongodb+srv://dogeTag:SvhZeqx4sprynmAv@shop.auuyn.gcp.mongodb.net/dogeTagDB?retryWrites=true&w=majority
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const dogecoin = require('./dogecoin');
@@ -15,6 +14,7 @@ const UserSchema = new Schema({
     wifKey: String,
     secretKey: String,
     publicKey: String,
+    tweetUrl: String,
     active: Boolean
 }, { versionKey: false });
 
@@ -22,6 +22,14 @@ const userModel = mongoose.model("Users", UserSchema);
 
 const createUser = (userInfo, cb) => {
     // check userInfo
+    if (_.isNil(userInfo.username) || _.size(userInfo.username) == 0) {
+        cb("invalid username");
+    }
+
+    if (_.isNil(userInfo.dogname) || _.size(userInfo.dogname) == 0) {
+        cb("invalid dog name");
+    }
+
     userWallet = dogecoin.createWallet();
 
     const newUser = {
@@ -31,6 +39,7 @@ const createUser = (userInfo, cb) => {
         wifKey: userWallet.wif,
         secretKey: userWallet.sk,
         publicKey: userWallet.pk,
+        tweetUrl: '',
         active: false
     };
     
@@ -45,6 +54,23 @@ const createUser = (userInfo, cb) => {
     });
 };
 
+const getUserByPublicKey = (pk, cb) => {
+    const query = {
+        publicKey: pk
+    };
+
+    userModel.findOne(query, (err, user) => {
+        if (err || user == null) {
+            if (user == null) err = "missing user";
+            cb(err);
+        } else {
+            let userPick = _.pick(user, ['username', 'dogname', 'tweetUrl', 'publicKey']);
+            cb(null, userPick);
+        }
+    });
+};
+
 module.exports = {
-    createUser: createUser
+    createUser: createUser,
+    getUserByPublicKey: getUserByPublicKey
 };

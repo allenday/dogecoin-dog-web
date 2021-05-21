@@ -16,15 +16,28 @@ server.get('/api/create/wallet', (req, res) => {
     res.json(dogecoin.createWallet());
 });
 
-server.get('/api/create/user', (req, res) => {    
+server.get('/api/addr/:publicKey', (req, res) => {
+    if (_.isNil(req.params.publicKey)) {
+        res.sendStatus(404);
+    } else {
+        dbMongo.getUserByPublicKey(req.params.publicKey, (err, user) => {
+            if (err) {
+                res.json({"error": "missing data."});
+            } else {
+                res.json(user);                
+            }
+        })        
+    }
+});
+
+server.get('/api/user', (req, res) => {    
     const userInfo = {
         username: req.query.twitter,
         dogname: req.query.dogname        
     };
 
     dbMongo.createUser(userInfo, (err, user) => {
-        if (err) {
-            console.log(err);
+        if (err) {        
             res.json({"error": "missing data."});
         } else {
             res.json(user);
@@ -34,6 +47,10 @@ server.get('/api/create/user', (req, res) => {
 
 server.get('/', (req, res) => {
     res.sendFile(__dirname + '/' + 'index.html');
+});
+
+server.get('/addr/:publicKey', (req, res) => {
+    res.sendFile(__dirname + '/' + 'addr.html');
 });
 
 console.log('Server started ...');
