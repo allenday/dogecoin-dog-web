@@ -44,7 +44,7 @@ server.get('/api/user', (req, res) => {
         }
     });
 });
-
+/*
 server.get('/', (req, res) => {
     res.sendFile(__dirname + '/' + 'index.html');
 });
@@ -52,6 +52,6 @@ server.get('/', (req, res) => {
 server.get('/addr/:publicKey', (req, res) => {
     res.sendFile(__dirname + '/' + 'addr.html');
 });
-
+*/
 console.log('Server started ...');
 server.listen(8083);
