@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 
 const dogecoin = require('./dogecoin');
 const dbMongo = require('./db');
@@ -12,11 +12,11 @@ server.use('/assets', express.static('assets'));
 server.use('/images', express.static('images'));
 //server.use(cors);
 
-server.get('/api/create/wallet', (req, res) => {
+server.get('/api/create/wallet', cors(), (req, res) => {
     res.json(dogecoin.createWallet());
 });
 
-server.get('/api/addr/:publicKey', (req, res) => {
+server.get('/api/addr/:publicKey', cors(), (req, res) => {
     if (_.isNil(req.params.publicKey)) {
         res.sendStatus(404);
     } else {
@@ -30,7 +30,7 @@ server.get('/api/addr/:publicKey', (req, res) => {
     }
 });
 
-server.get('/api/user', (req, res) => {    
+server.get('/api/user', cors(), (req, res) => {    
     const userInfo = {
         username: req.query.twitter,
         dogname: req.query.dogname        
