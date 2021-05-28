@@ -37,7 +37,7 @@
 <!--
                                 <h2>Join DogeTag</h2>
 -->
-                                <form method="post" action="#">
+                                <form method="get" action="#">
                                     <div class="row gtr-uniform">
                                         <div class="col-6 col-12-xsmall">
                                             <input type="text" name="twitter" id="twitter" value="" placeholder="your @username" required/>
@@ -49,7 +49,7 @@
                                         
                                         <div class="col-12">
                                             <ul class="actions">
-                                                <li><input type="submit" value="Submit" class="primary" /></li>
+                                                <li><input type="submit" value="Submit" class="primary" id="submit_button"/></li>
                                                 <li><input type="reset" value="Reset" /></li>
                                             </ul>
                                         </div>
@@ -216,6 +216,15 @@ Spread the doge love. Let's realize the dream of financial inclusion for all dog
                     download.setAttribute("href", image);                    
                 }
 
+                function getParameterByName(name, url = window.location.href) {
+                    name = name.replace(/[\[\]]/g, '\\$&');
+                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                }
+
                 // qr code view fix
                 $( window ).resize(function() {
                     if ($(window).width() <= 768)
@@ -225,7 +234,10 @@ Spread the doge love. Let's realize the dream of financial inclusion for all dog
                 $(document).ready(function () {                    
                     if ($(window).width() <= 768)
                         $('#qr-table').removeClass('row');
-
+                        
+                    var twitter = getParameterByName('twitter');
+                    var dogname = getParameterByName('dogname');
+                    
                     $("form").submit(function (event) {
                         var userData = {
                             twitter: $("#twitter").val(),
@@ -288,8 +300,14 @@ Spread the doge love. Let's realize the dream of financial inclusion for all dog
                             
                         });
         
-                        event.preventDefault();
+                        event.preventDefault();                        
                     });
+
+                    if (twitter && dogname) {
+                      $("#twitter").val(twitter);
+                      $("#dogname").val(dogname);
+                      $("#submit_button").click();
+                    }                    
                 });                  
         
             </script>    

@@ -44,11 +44,11 @@ server.get('/api/user', cors(), (req, res) => {
         }
     });
 });
-/*
-server.get('/', (req, res) => {
+
+server.get('/create', (req, res) => {
     res.sendFile(__dirname + '/' + 'index.html');
 });
-
+/*
 server.get('/addr/:publicKey', (req, res) => {
     res.sendFile(__dirname + '/' + 'addr.html');
 });
