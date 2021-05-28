@@ -45,7 +45,7 @@ server.get('/api/user', cors(), (req, res) => {
     });
 });
 
-server.get('/create', (req, res) => {
+server.get('/getting-started', (req, res) => {
     res.sendFile(__dirname + '/' + 'index.html');
 });
 /*
